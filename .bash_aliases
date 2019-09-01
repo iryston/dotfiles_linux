@@ -2,7 +2,7 @@
 
 ## TMUX create new or attach if exists
 #alias tmx='tmux new-session -A -s "local"'
-alias tmx='tmux new-session -A -s "$(hostname -s)"'
+alias tms='tmux new-session -A -s "$(hostname -s)"'
 
 ## External IP
 alias my-ip-external='wget -qO- ipv4.icanhazip.com'
@@ -38,4 +38,8 @@ alias youtube-dl-audio-playlist='youtube-dl --no-cache-dir --yes-playlist --extr
 ## Get local copy of site front
 #alias site-sucker='wget -r -k -l 9 -p -E -nc'
 alias site-sucker='wget --no-check-certificate -e robots=off -r -k -l 9 -p -E -nc'
+
+## Docker4Drupal aliases
+# alias drush='make drush'
+# alias composer='make composer'
 
