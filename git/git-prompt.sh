@@ -546,9 +546,9 @@ __git_ps1 ()
 		b="\${__git_ps1_branch_name}"
 	fi
 
-	local f="$w$i$s$u"
-	#local gitstring="$c$b${f:+$z$f}$r$p"
-	local gitstring="$c$b$z${f:+$f}$r$p"
+	local f="$w$i$s$u$r$p"
+	local gitstring="$c$b${f:+$z$f}"
+	#local gitstring="$c$b$z${f:+$f}$r$p"
 
 	if [ $pcmode = yes ]; then
 		if [ "${__git_printf_supports_v-}" != yes ]; then
