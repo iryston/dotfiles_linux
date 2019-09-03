@@ -1,11 +1,10 @@
 ## Custom aliases
 
-## TMUX create new or attach if exists
-#alias tmx='tmux new-session -A -s "local"'
+## TMUX create new session or attach if exists
 alias tms='tmux new-session -A -s "$(hostname -s)"'
 
 ## External IP
-alias my-ip-external='wget -qO- ipv4.icanhazip.com'
+alias my-ip-external='dig @resolver1.opendns.com ANY myip.opendns.com +short -4 && dig @resolver1.opendns.com ANY myip.opendns.com +short -6'
 ## Internal IP
 alias my-ip-internal="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 
