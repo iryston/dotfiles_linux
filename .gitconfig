@@ -1,0 +1,85 @@
+[include]
+  path = ~/.credentials/git/.gitconfig.privat
+  path = ~/.gitconfig.local
+
+[credential]
+; helper = osxkeychain
+  helper = cache --timeout=3600
+
+[core]
+  excludesfile = ~/.gitignore_global
+  editor = vim
+  pager  = less -FRSX
+  autocrlf = input
+
+[color]
+  ui = true
+
+[push]
+  default = current
+
+[diff]
+  tool = vimdiff
+
+[merge]
+  tool = vimdiff
+  conflictstyle = diff3
+
+[mergetool "vimdiff"]
+  cmd = vim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+  prompt = false
+  keepBackup = false
+
+[commit]
+  template = ~/.gitcommit_template
+; gpgsign = true
+
+[tag]
+; gpgsign = true
+
+[alias]
+  aall = add . --all
+  aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort
+  amend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
+  cho = checkout
+  cmt = commit -am
+  export = archive -o latest.tar.gz -9 --prefix=latest/
+  hist = log --graph --date=relative --pretty=format:\"%C(yellow)%h %C(blue)%m%C(auto)%d %C(reset)%s %C(blue)(%ad by %an)%C(reset)\"
+  last = cat-file commit HEAD
+  log-medium = log --graph --abbrev-commit --pretty=medium
+  log-oneline = log --graph --abbrev-commit --date=short --pretty=oneline
+  ls = ls-files --exclude-per-directory=.gitignore --exclude-from=.git/info/exclude -t -o -u -s -m -d
+  restore = !git checkout $(git rev-list -n 1 HEAD -- \"$1\")^ -- \"$1\"
+  st = status -sb
+  this = !git init && git add . && git commit -m \"Initial commit.\"
+  unstage = reset HEAD --
+
+[pager]
+  status = true
+  show-branch = true
+  color = true
+
+[gui]
+  encoding = utf-8
+
+[url "https://bitbucket.org/"]
+  insteadOf = bb:
+
+[url "https://gitlab.com/"]
+  insteadOf = gl:
+
+[url "https://github.com/"]
+  insteadOf = gh:
+
+[url "https://gist.github.com/"]
+  insteadOf = gist:
+
+[url "git@github.com:"]
+  insteadOf = https://github.com/
+
+[filter "lfs"]
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+
