@@ -13,5 +13,8 @@ insert_final_newline = true
 [*.{go,py,rb,php}]
 indent_size = 4
 
+[{Makefile,makefile}]
+indent_style = tab
+
 [*.md]
 trim_trailing_whitespace = false
