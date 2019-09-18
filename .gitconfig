@@ -44,14 +44,21 @@
   cho = checkout
   cmt = commit -am
   export = archive -o latest.tar.gz -9 --prefix=latest/
-  hist = log --graph --date=relative --pretty=format:\"%C(yellow)%h %C(blue)%m%C(auto)%d %C(reset)%s %C(blue)(%ad by %an)%C(reset)\"
+  hist = log --graph --date=relative \
+    --pretty=format:\"%C(yellow)%h %C(blue)%m%C(auto)%d %C(reset)%s %C(blue)(%ad by %an)%C(reset)\"
   last = cat-file commit HEAD
   log-medium = log --graph --abbrev-commit --pretty=medium
+  log-myday = "!sh -c 'git log --reverse --abbrev-commit --no-merges --branches=* --date=relative \
+    --since=\"midnight\" --author=\"`git config --get user.name`\" \
+    --pretty=format:\"%C(yellow)%h %C(blue)%m%C(auto)%d %C(reset)%s %C(blue)(%ad by %an)%C(reset)\"'"
   log-oneline = log --graph --abbrev-commit --date=short --pretty=oneline
+  log-today = log --reverse --abbrev-commit --no-merges --branches=* --date=relative --since=\"midnight\" \
+    --pretty=format:\"%C(yellow)%h %C(blue)%m%C(auto)%d %C(reset)%s %C(blue)(%ad by %an)%C(reset)\"
   ls = ls-files --exclude-per-directory=.gitignore --exclude-from=.git/info/exclude -t -o -u -s -m -d
   restore = !git checkout $(git rev-list -n 1 HEAD -- \"$1\")^ -- \"$1\"
   st = status -sb
   this = !git init && git add . && git commit -m \"Initial commit.\"
+  today = shortlog --no-merges --branches=* --since=\"midnight\" -ne
   unstage = reset HEAD --
 
 [pager]
