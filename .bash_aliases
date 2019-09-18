@@ -21,7 +21,7 @@ alias lsort='awk "{print length, \$0}" | sort -n | awk "{\$1=\"\"; print substr(
 alias diff-dir='diff --ignore-file-name-case -qys'
 
 ## VIM aliases
-alias v='vim'
+alias v='nvim'
 alias vn='vim -u NONE -U NONE -i NONE -N -n'
 alias vu='vim +PlugUpgrade +PlugClean! +PlugInstall +PlugUpdate +qall'
 
